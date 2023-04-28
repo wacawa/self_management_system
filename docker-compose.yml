@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASS}
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    restart: always
+  webapp:
+    restart: always
+    build:
+      context: .
+    container_name: self_manage_sys
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 4000 -b '0.0.0.0'"
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASS}
+    volumes:
+      - .:/webapp
+    ports:
+      - 4400:4400
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+volumes:
+  postgres_volume:
