@@ -13,12 +13,13 @@ services:
     build:
       context: .
     container_name: self_manage_sys
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 4000 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 4400 -b '0.0.0.0'"
     environment:
       POSTGRES_USER: ${PG_USER}
       POSTGRES_PASSWORD: ${PG_PASS}
     volumes:
       - .:/webapp
+      - bundle:/usr/local/bundle
     ports:
       - 4400:4400
     stdin_open: true
@@ -27,3 +28,4 @@ services:
       - db
 volumes:
   postgres_volume:
+  bundle:
