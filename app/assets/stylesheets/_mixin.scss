@@ -1,0 +1,9 @@
+@mixin noLinkStyle($textColor) {
+  text-decoration: none;
+  color: $textColor;
+}
+
+@mixin logo {
+  font-family: cursive, 'Sacramento';
+  // font-size: $fontSize;
+}

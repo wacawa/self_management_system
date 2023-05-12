@@ -1,0 +1,103 @@
+@import 'variables';
+@import 'mixin';
+
+html body {
+  margin: 0;
+}
+
+.container {
+  color: $cMain;
+  position: relative;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.sidebar {
+  width: $sidebarWidth;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    background-color: $cMain;
+    height: $sideMenuHeight;
+    border-right: 2px white solid;
+    border-bottom: 2px white solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__logo {
+    @include logo;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+  }
+
+  &__menu {
+    box-sizing: border-box;
+    border-top: 2px solid $cMain;
+    border-right: 2px solid $cMain;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  &__link {
+    @include noLinkStyle($cMain);
+  }
+
+  &__item {
+    height: $sideMenuHeight;
+    display: flex;
+    flex-direction: column;
+
+    &::before, &::after {
+      content: '';
+      margin-top: 15px;
+      cursor: default;
+    }
+
+    &::after {
+      border-bottom: 2px solid $cMain;
+    }
+
+    &:hover {
+      background-color: $cMain;
+      color: white;
+      transition: 0.8s;
+    }
+  }
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  // flex-wrap: nowrap;
+}
+
+.header {
+  color: white;
+  background-color: $cMain;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: $sideMenuHeight;
+
+  &__menu {
+    margin-right: 5%;
+    list-style: none;
+  }
+
+  &__item a {
+    @include noLinkStyle(white);
+  }
+}
+
+.content {
+  padding: 0 $sideSpace;
+}
