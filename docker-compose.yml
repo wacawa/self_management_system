@@ -1,12 +1,13 @@
 version: '3'
 services:
   db:
-    image: postgres
+    image: postgres:14
+    ports:
+      - 5432:5432
     environment:
-      POSTGRES_USER: ${PG_USER}
-      POSTGRES_PASSWORD: ${PG_PASS}
+      POSTGRES_PASSWORD: $PG_PASS
     volumes:
-      - postgres_volume:/var/lib/postgresql/data
+      - ./tmp/db:/var/lib/postgresql/data
     restart: always
   webapp:
     restart: always
@@ -15,8 +16,8 @@ services:
     container_name: self_manage_sys
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 4400 -b '0.0.0.0'"
     environment:
-      POSTGRES_USER: ${PG_USER}
-      POSTGRES_PASSWORD: ${PG_PASS}
+      POSTGRES_USER: $PG_USER
+      POSTGRES_PASSWORD: $PG_PASS
     volumes:
       - .:/webapp
       - bundle:/usr/local/bundle
@@ -29,3 +30,4 @@ services:
 volumes:
   postgres_volume:
   bundle:
+    driver: local
