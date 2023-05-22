@@ -68,6 +68,6 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-  config.hosts << "self-management-system.fly.dev"
+  config.hosts << "patient-sound-3309.fly.dev"
 
 end
