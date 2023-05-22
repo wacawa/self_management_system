@@ -89,7 +89,7 @@ html body {
   height: $sideMenuHeight;
 
   &__menu {
-    margin-right: 5%;
+    margin-right: $rightSpace;
     list-style: none;
   }
 
@@ -99,5 +99,5 @@ html body {
 }
 
 .content {
-  padding: 0 $sideSpace;
+  padding: 0 $rightSpace 0 $leftSpace;
 }

@@ -2,12 +2,53 @@
   <%= javascript_import_module_tag "static_pages/home" %>
 <% end %>
 
-<h1 class="logo">MyLog</h1>
+<h1 class="logo">MyLog</h1> 
 <p>Find me in app/views/static_pages/home.html.erb</p>
 
-<div class="loginModal">
-  <h2>ログイン</h2>
-  <%= link_to "#", class: "closeBtn" do %>
-    <span class="close"></span>
-  <% end %>
+<div class="contentMain">
+  <%= link_to "ユーザー登録", "#", class: "modalOpen signupBtn" %>
+</div>
+
+<div class="modals">
+  <div class="loginModal">
+    <h2>ログイン</h2>
+    <%= link_to "#", class: "modalClose crossBtn" do %>
+      <span class="cross"></span>
+    <% end %>
+
+    <%= form_with(url: login_path, method: :post, class: "forms") do |f| %>
+      <%= f.label :email, class: "label" %>
+      <%= f.email_field :email, placeholder: "メールアドレス", class: "form" %>
+
+      <%= f.label :password, class: "label" %>
+      <%= f.password_field :password, placeholder: "パスワード", class: "form" %>
+
+      <div class="btns">
+        <%= f.submit "ログイン", class: "btn btn__submit" %>
+        <div class="btn modalClose btn__cancel">キャンセル</div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="signupModal">
+    <h2>ユーザー登録</h2>
+    <%= link_to "#", class: "modalClose crossBtn" do %>
+      <span class="cross"></span>
+    <% end %>
+    
+    <%= form_with(url: users_path, method: :post, class: "forms") do |f| %>
+      <%= f.label :email, class: "label" %>
+      <%= f.email_field :email, placeholder: "メールアドレス", class: "form" %>
+
+      <%= f.label :password, class: "label" %>
+      <%= f.password_field :password, placeholder: "パスワード", class: "form" %>
+      <%= f.label :password_confirmation, class: "label" %>
+      <%= f.password_field :password_confirmation, placeholder: "パスワード確認用", class: "form" %>
+
+      <div class="btns">
+        <%= f.submit "作成", class: "btn btn__submit" %>
+        <div class="btn modalClose btn__cancel">キャンセル</div>
+      </div>
+    <% end %>
+  </div>
 </div>
